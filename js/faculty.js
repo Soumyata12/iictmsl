@@ -1,10 +1,10 @@
 //Js file for index.html
 /* --color : #fff in nightmode
-   --color : #000 in daymode  
+   --color : #000 in daymode
    --background : #fff in daymode
    --background : #000 in darkmode
    <i class="far fa-moon"></i> : Moon icon
-   <i class="fas fa-lightbulb"></i> : lightbulb icon 
+   <i class="fas fa-lightbulb"></i> : lightbulb icon
    typed : for typing effect in header : .logo > .box1 > <h1 id="ban"><span id="typed"></span></h1>
    particlesJS : background particles effect
    scrollToTop : for scrollToTop btn
@@ -145,23 +145,28 @@ catch{
     console.log("Connection Error");
 }
 
-//Color Change
-let day = true;
-$("#day-night").click(()=>{
-    day = !day;
-    if(!day){
-        document.documentElement.style.setProperty('--color', '#fff');
-        document.documentElement.style.setProperty('--background', '#000');
-        color = "#fff";
+// Local Storing the color change
+let day = localStorage.getItem('day');
 
-        $('#day-night').removeClass("fa-moon");
-        $('#day-night').removeClass("far");
-        $('#day-night').addClass("fas");
-        $('#day-night').addClass("fa-lightbulb");
-        $(".fixedbar").addClass('night');
-        $("#main > div.logo > div > img").attr("src","./image/IIC2_night.png");
-        $("#particles-js > div.fixedbar > div:nth-child(1) > a > img").attr("src","./image/IIC_night.png");
-    }else{
+const nightToggle = document.querySelector('#day-night');
+
+const enableNightMode = () => {
+  document.documentElement.style.setProperty('--color', '#fff');
+  document.documentElement.style.setProperty('--background', '#000');
+  color = "#fff";
+
+  $('#day-night').removeClass("fa-moon");
+  $('#day-night').removeClass("far");
+  $('#day-night').addClass("fas");
+  $('#day-night').addClass("fa-lightbulb");
+  $(".fixedbar").addClass('night');
+  $("#main > div.logo > div > img").attr("src","./image/IIC2_night.png");
+  $("#particles-js > div.fixedbar > div:nth-child(1) > a > img").attr("src","./image/IIC_night.png");
+  $("#main > section > img").attr('src','./image/iiccounternight.png')
+  localStorage.setItem('day', 'enabled');
+}
+
+const disableNightMode = () => {
         document.documentElement.style.setProperty('--color', '#000');
         document.documentElement.style.setProperty('--background', '#fff');
         color = "#000";
@@ -173,8 +178,23 @@ $("#day-night").click(()=>{
         $(".fixedbar").removeClass('night');
         $("#main > div.logo > div > img").attr("src","./image/IIC2.png");
         $("#particles-js > div.fixedbar > div:nth-child(1) > a > img").attr("src","./image/IIC.png");
-    }
-    particlesJS('particles-js', {
+        $("#main > section > img").attr('src','./image/iiccounternight.png')
+        localStorage.setItem('day', null);
+}
+
+if (day === 'enabled') {
+  enableNightMode();
+}
+
+nightToggle.addEventListener('click', () => {
+  day = localStorage.getItem('day');
+
+  if (day !== 'enabled') {
+    enableNightMode();
+  } else {
+    disableNightMode();
+  }
+  particlesJS('particles-js', {
         "particles": {
             "number": {
                 "value": 30,
@@ -282,9 +302,8 @@ $("#day-night").click(()=>{
                 }
             }
         },
-        "retina_detect": true
-    });
-    //$(".fixedbar div a img").attr("src","")
+	"retina_detect": true
+});
 });
 
 console.clear();
