@@ -1,3 +1,4 @@
+<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
 let color = "#000"; // for background particles color.
 particlesJS('particles-js', {
     "particles": {
