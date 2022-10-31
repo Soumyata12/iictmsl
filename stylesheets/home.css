@@ -625,7 +625,7 @@ canvas {
 
 /*Loading Animation*/
 .load{
- /* display: -webkit-box;
+  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   height: 100vh;
@@ -638,7 +638,7 @@ canvas {
       -ms-flex-align: center;
           align-items: center;
   background: #b3e5fc;
-  z-index: 999999999; */
+  z-index: 999999999; 
 }
 
 .loader {
