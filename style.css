@@ -59,9 +59,13 @@
 {
   padding:11%;
 }
+#carouselExampleFade
+{
+  padding:5.77% 5%;
+}
 .carousel-image
 {
-  height:17%;
+  height:6%;
   width:100%;
 }
 .row
